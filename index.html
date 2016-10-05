@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<script>
+	
+	$.ajax({
+    url:
+        'https://www.overpass-api.de/api/interpreter?data=[out:json]' + 
+        '[out:json][timeout:60];' + 
+        'area["boundary"~"administrative"]["name"~"Berlin"];' + 
+        'node(area)["amenity"~"school"];' + 
+        'out;',
+    dataType: 'json',
+    type: 'GET',
+    async: true,
+    crossDomain: true
+}).done(function() {
+    console.log( "second success" );
+}).fail(function(error) {
+    console.log(error);
+    console.log( "error" );
+}).always(function() {
+    console.log( "complete" );
+});
+</script>
+</body>
+</html>
